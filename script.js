@@ -5,19 +5,19 @@ function alert(message) {
   toastBootstrap.show();
 }
 
-function toPhotonFluxDensity(value, unit) {
-  // https://www.gemini.edu/observing/resources/itc/itc-help
-  // Photon flux density is measured in photons/s/nm/m^2
+// lambda is the wavelength in nm. This is equivalent to the formal definition in Oke & Gunn (1983. ApJ, 266, 713).
+// https://articles.adsabs.harvard.edu/pdf/1983ApJ...266..713O
+// https://en.wikipedia.org/wiki/Photometric_system
+function getLambda() {
+  return parseFloat(document.querySelector("#lambda input").value) || 0;
+}
 
-  // lambda is the wavelength in nm. This is equivalent to the formal definition in Oke & Gunn (1983. ApJ, 266, 713).
-  // https://articles.adsabs.harvard.edu/pdf/1983ApJ...266..713O
-  // https://en.wikipedia.org/wiki/Photometric_system
-  const lambda = 551e-9; // 551 nm (V-band)
+// https://www.gemini.edu/observing/resources/itc/itc-help
+// Photon flux density is measured in photons/s/nm/m^2
+function toPhotonFluxDensity(value, unit) {
+  const lambda = getLambda();
 
   switch (unit) {
-    case "mag":
-      // TODO: Ask professor about this
-      throw new Error("Not implemented");
     case "AB mag":
       return (5.632e10 / lambda) * Math.pow(10, -0.4 * value);
     case "Jy":
@@ -34,11 +34,9 @@ function toPhotonFluxDensity(value, unit) {
 }
 
 function fromPhotonFluxDensity(value, unit) {
-  const lambda = 551e-9; // 551 nm (V-band)
+  const lambda = getLambda();
 
   switch (unit) {
-    case "mag":
-      throw new Error("Not implemented");
     case "AB mag":
       return -2.5 * Math.log10(value / (5.632e10 / lambda));
     case "Jy":
@@ -70,7 +68,7 @@ function update(element) {
   const result = toPhotonFluxDensity(value, unit);
   const otherValue = fromPhotonFluxDensity(result, otherUnit);
 
-  otherInput.value = otherValue;
+  otherInput.value = otherValue.toFixed(3);
 
   alert(`${value} ${unit} = ${result} photons/s/nm/m^2`);
 }

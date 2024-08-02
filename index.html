@@ -37,8 +37,7 @@
         <div class="input-group mb-5 unit-input" id="input-1">
           <input type="number" class="form-control w-3/5" placeholder="Enter a value" value="0" />
           <select class="form-select w-2/5">
-            <option value="mag" selected>mag</option>
-            <option value="AB mag">AB mag</option>
+            <option value="AB mag" selected>AB mag</option>
             <option value="Jy">Jy</option>
             <option value="W/m^2/um">W/m^2/um</option>
             <option value="ergs/s/cm^2/Angstrom">ergs/s/cm^2/Angstrom</option>
@@ -47,16 +46,26 @@
         </div>
 
         <!-- Input 2 -->
-        <div class="input-group mb-3 unit-input" id="input-2">
+        <div class="input-group mb-5 unit-input" id="input-2">
           <input type="number" class="form-control w-3/5" placeholder="Enter a value" value="0" />
           <select class="form-select w-2/5">
-            <option value="mag">mag</option>
-            <option value="AB mag" selected>AB mag</option>
-            <option value="Jy">Jy</option>
+            <option value="AB mag">AB mag</option>
+            <option value="Jy" selected>Jy</option>
             <option value="W/m^2/um">W/m^2/um</option>
             <option value="ergs/s/cm^2/Angstrom">ergs/s/cm^2/Angstrom</option>
             <option value="ergs/s/cm^2/Hz">ergs/s/cm^2/Hz</option>
           </select>
+        </div>
+
+        <!-- Lambda -->
+        <div class="input-group mb-3" id="lambda">
+          <div class="input-group-prepend">
+            <span class="input-group-text">λ</span>
+          </div>
+          <input type="number" class="form-control" aria-label="Lambda Value" value="551.0" />
+          <div class="input-group-append">
+            <span class="input-group-text">nm</span>
+          </div>
         </div>
 
         <!-- Credits -->
